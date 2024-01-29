@@ -1,0 +1,70 @@
+SUMMARY:
+
+    This is the codebase for CS354 Project 2 testing.
+    The testing code tests 7 functions that students have to implement, 
+    as well as end to end execution of all their functions called sequentially.
+    The abbreviations stand for the functions being tested (GM -> Get_Message() etc)
+
+CONTENTS:
+
+-   Makefile
+-   README (this file)
+-   inputs/
+    -   input_X_Y
+        where X is one of (AR, D, driver, E, GM, GR, GWR, SUR ) 
+        where Y is test case number
+-   src/
+    -   enigma.h
+    -   enigm_driver.c
+    -   enigma_sol.h
+    -   test_AR.c
+    -   test_D.c
+    -   test_driver.c
+    -   test_E.c
+    -   test_GM.c
+    -   test_GR.c
+    -   test_GWR.c
+    -   test_SUR.c
+
+USAGE INSTRUCTIONS:
+
+-   Make sure you are on a CSL machine.
+
+-   Create a folder containing only the following:
+    1) the enigma_functions.c that you wish to run tests on
+    2) the Makefile
+    3) inputs directory
+    4) src directory
+
+-   Run "make setup" - this should copy all the source files to current folder
+    and create an empty folder called tests
+
+-   Run "make all" - this will compile all the test files and copy the executables
+    into each test folder
+
+-   Run "make alltests -i" - this will run all tests in their respective folders, and
+    produce a final output file (e.g. final_GM_output) in the root folder with the execution results.
+    If your code yields a segmentation fault on some of the tests, the "-i" flag will make sure all
+    downstream tests are still executed.
+
+-   Inspect output of "final_X_output" where X is the required function that you
+    wish to check. We grade based on the presence of statements output by the 
+    grading script itself, which start with "Correct" or "Wrong". If you left 
+    extra printf statments in your code, these are ignored and thus will not 
+    affect your grade.
+
+    If you fail a test, the output message will look like e.g.
+    Wrong Output Length - <your result> vs <expected result>
+
+ADDITIONAL COMMANDS:
+
+-   Run "make X" to compile and organize test code for function X
+
+-   Run "make test_X" to test using compiled and organized code 
+    for any single function X
+
+-   Run the compiled test executable inside tests/X/ against the input files
+    present in that folder for individual test case.
+    e.g. To run a single end-to-end test, you would run the following command: 
+    test_driver < input_driver_1
+

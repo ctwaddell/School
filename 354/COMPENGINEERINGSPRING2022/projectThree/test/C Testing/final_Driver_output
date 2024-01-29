@@ -1,0 +1,10 @@
+Testing for 10 operations in total
+TEST PASSED
+Testing for 20 operations in total
+Failed at end, incorrect list
+Student list:
+2 -> 2
+
+Expected list:
+2
+TEST FAILED

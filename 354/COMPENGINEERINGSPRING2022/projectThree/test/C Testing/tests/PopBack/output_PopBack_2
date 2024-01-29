@@ -1,0 +1,4 @@
+Testing for 3 operations in total
+Failed at operation index: 2
+ - Incorrect dataCand : -1 vs Sol : 0
+TEST FAILED

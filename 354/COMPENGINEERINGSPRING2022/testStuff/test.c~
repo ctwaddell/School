@@ -1,0 +1,7 @@
+#include <stdio.h>
+
+int main()
+{
+  char s[] = "CS534!!!";
+  printf("%s", s);
+}

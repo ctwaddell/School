@@ -1,0 +1,2 @@
+header column should end in an 8
+payload = blocksize - header - padding

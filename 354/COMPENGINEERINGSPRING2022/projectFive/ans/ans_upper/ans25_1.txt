@@ -1,0 +1,13 @@
+#INCLUDE "WEEK6.H"
+
+INT MAIN(){
+    INT R=0, C=0;
+    SCANF("%D", &R);
+    SCANF("%D", &C);
+
+    INT **M34 = CREATE_RXC_INDEX_MATRIX(R, C);
+    PRINT_MATRIX(M34, R, C);
+    FREE_MATRIX(M34, R);
+
+    RETURN 0;
+}

@@ -1,0 +1,80 @@
+SUMMARY:
+
+    This is the codebase for CS354 Project 3 Testing.
+    The testing code tests 10 functions that students have to implement, 
+    as well as end to end execution of their functions called in 
+    random order. The executables are named after the functions that
+    are tested. 
+
+CONTENTS:
+
+-   Makefile
+-   README (this file)
+-   tests/
+    -   X/Y
+        Where X is the name of the function being tested.
+        Y is of the form input_X_N where N is the test case number
+-   src
+    -   linked_list_sol.h
+    -   test_driver.c
+
+USAGE INSTRUCTIONS:
+
+-   Make sure you are on a CSL machine.
+
+-   Copy the contents of this folder entirely to a folder containing your solution file.
+
+-   Rename your file to "solution.c". Submissions were of the form linked_list.c
+
+-   Comment out or rename your "main()" function in your code. test_driver.c contains
+    the actual main() function that will be executed. 
+
+-   Run "make setup" - this will copy the source files over correctly
+
+-   Run "make all" - this will compile the single target executable
+
+-   Run "make alltests -i" - this will run the executable against all the tests and collect output
+    in files named final_X_output.txt
+
+-   To run tests for any particular function, run "make FunctionName", where FunctionName would look
+    like "PopBack" or "RemoveDuplicates"
+
+-   To run any individual test, run "./test < tests/X/Y" where X is your desired function and Y is the
+    filename. 
+
+-   Run "make clean" after running these tests, to clear out all the test output and to start testing 
+    again. If you do not run this, and test your code twice, the output files will be added to and not
+    rewritten. 
+
+TEST CASE OUTPUTS:
+
+-   Each test case consists of multiple operations including the function that it will test. For 
+    example, the folder "PopBack" contains test cases for your implementation of "Pop_Back" and
+    it calls your implementation one (or many times) on a linked list created by the driver.
+-   Each test case can output "TEST PASSED" if it passes the test case, or "TEST FAILED" with some
+    helpful debugging information on why the test failed. If your code triggers a segmentation
+    fault when running a test case, this will not be shown in the output file.
+-   Each test case is worth 1 point. If the tests fail (either via "TEST FAILED" or via runtime
+    errors ), you will not get a point. An exception for the points is for the driver tests, 
+    there are two tests which each correspond to 5 points. 
+-   The test_driver.c automatically creates a Linked List and then calls your function. Each test
+    case may have lines that look like "X 1". This initializes a linked list and adds elements
+    using our method, not using yours. 
+-   Each operation that tests a student method looks like "CHAR NUM". CHAR will be denote the 
+    particular operation to be tested, according to the map below. NUM will denote data, or
+    be 0 in case a particular operation does not require data. 
+
+OP - CHAR MAP:
+-   X NUM   :   Adds NUM to the end of the linked list using our implementation, used to init.
+-   S 0     :   Calls Size() without any arguments
+-   F NUM   :   Calls PushFront( NUM ) 
+-   B NUM   :   Calls PushBack( NUM )
+-   f 0     :   Calls PopFront()
+-   b 0     :   Calls PopBack()
+-   I NUM   :   Calls CountIf( NUM )
+-   D NUM   :   Calls Delete( NUM )
+-   E 0     :   Calls Empty()
+-   C 0     :   Calls Clear()
+-   R 0     :   Calls RemoveDuplicates()
+
+

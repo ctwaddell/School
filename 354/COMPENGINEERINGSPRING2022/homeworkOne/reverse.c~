@@ -1,0 +1,11 @@
+#include <stdio.h>
+
+void Reverse(char* str)
+{
+  // code here
+}
+
+void main()
+{
+  // test here
+}

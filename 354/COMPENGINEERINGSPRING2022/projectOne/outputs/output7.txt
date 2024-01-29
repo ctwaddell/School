@@ -1,0 +1,41 @@
+
+grand summary:
+Test Movie One
+1234
+Adams
+10.000000
+123456789
+
+grand summary:
+B
+2022
+Director
+9.900000
+123456000
+
+grand summary:
+Test Movie Three
+2022
+Critic
+1.200000
+123000000
+
+grand summary:
+Test Movie Four 
+2022
+Dan
+5.000000
+123000000
+
+grand summary:
+Movie Five
+2022
+
+8.000000
+123000
+Id Title             Year  Director  Rating    Revenue
+1  Test Movie One    1234  Adams       10.0  123456789
+2  B                 2022  Director     9.9  123456000
+3  Test Movie Three  2022  Critic       1.2  123000000
+4  Test Movie Four   2022  Dan          5.0  123000000
+5  Movie Five        2022               8.0     123000

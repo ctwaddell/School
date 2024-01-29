@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main()
+{
+  char c = 'a';
+  printf("The character is %c %d %x \n", c, c, c);
+  c = c + 1;
+
+  printf("The character is %c %d %x \n", c, c, c);
+  c = c - ('a' + 'A');
+
+  return 0;
+
+}
+

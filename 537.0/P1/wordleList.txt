@@ -1,0 +1,7 @@
+alabama
+arizona
+blue
+red
+green
+laptop
+hello

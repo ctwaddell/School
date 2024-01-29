@@ -1,0 +1,136 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <strings.h>
+#include <string.h>
+#include <dirent.h>
+
+char* writeDirectoryPath(int directoryNumber)
+{
+  char* directoryBase = "./man_pages/manX/";
+  char* directoryPath = (char*)malloc(strlen(directoryBase));
+  strcpy(directoryPath, directoryBase);
+  directoryPath[15] = directoryNumber + 48;
+  return directoryPath;
+}
+
+char* writeFilePath(char* directoryPath, char* fileName)
+{
+  char* filePath = (char*)malloc(strlen(directoryPath) + strlen(fileName) + 1);
+  strcpy(filePath, directoryPath);
+  for(int i = strlen(directoryPath); i < strlen(directoryPath) + strlen(fileName) + 1; i++)
+    {
+      filePath[i] = fileName[i - strlen(directoryPath)];
+    }
+  
+  return filePath;
+}
+
+char* searchFile(char* fileName, char* directoryPath, char* searchTerm, int directoryNumber)
+{
+  char name[] = {27, 91, 49, 109, 78, 65, 77, 69, 0};
+  char description[] = {27, 91, 49, 109, 68, 69, 83, 67, 82, 73, 80, 84, 73, 79, 78, 0};
+  char* filePath = writeFilePath(directoryPath, fileName);
+  FILE* file;
+  char buffer[256];
+  char nameBuffer[256];
+  int bufferFlag = 0;
+  
+  file = fopen(filePath, "r");
+  if(file == NULL)
+    {
+      return NULL;
+    }
+  
+  while(fgets(buffer, 256, file))
+    {
+      if(strncmp(buffer, name, 8) == 0) bufferFlag = 1;
+      if(bufferFlag || strncmp(buffer, description, 15) == 0)
+	{
+	  while(fgets(buffer, 256, file) && buffer[0] != 10)
+	    {
+	      if(bufferFlag) strcpy(nameBuffer, buffer);
+	      char* searchResult = strstr(buffer, searchTerm);
+	      if(searchResult == NULL) continue;
+	      goto match;
+	    }
+	  
+	}
+    }
+  return NULL;
+  
+ match:
+  char* simpleFileName = (char*)malloc(strlen(fileName));
+  strcpy(simpleFileName, fileName);
+  for(int i = 0; i < strlen(simpleFileName); i++)
+    {
+      if(simpleFileName[i] == '.') simpleFileName[i] = 0;
+    }
+
+  printf("\n%s\n", simpleFileName);
+  char section[] = {32, 40, directoryNumber + 48, 41, 32, 45, 32, 0};
+  printf("%s\n", section);
+
+
+  char title[256];
+  int rec = 0;
+  for(int j = 0; j < strlen(nameBuffer) + 1; j++)
+    {
+      //printf("%d,", nameBuffer[j]);
+      if(nameBuffer[j] == '-')
+	{
+	  memmove(nameBuffer, nameBuffer + j + 2, 255 - j); 
+	}
+    }
+  printf("-%s-", nameBuffer);
+  
+  
+  char* returnString;
+  return NULL;
+  
+  
+}
+
+int main(int argc, char* argv[])
+{
+  if(argc == 1)
+    {
+      printf("wapropos what?\n");
+      exit(0);
+    }
+  if(argc == 2)
+    {
+      goto search;
+    }
+  else
+    {
+      printf("wapropos has encountered an error\n");
+      exit(1);
+    }
+  
+ search:
+  DIR* directory;
+  char* directoryPath;
+  char* res;
+  
+  for(int i = 1; i < 10; i++)
+    {
+      directoryPath = writeDirectoryPath(i);
+      printf("\n--------------\n%s\n", directoryPath);
+      directory = opendir(directoryPath);
+      if(directory == NULL)
+	{
+	  printf("wapropos has encountered an error\n");
+	  exit(1);
+	}
+      struct dirent* nextEntry = readdir(directory);
+      while(nextEntry != NULL)
+	{
+	  printf("\n%s", nextEntry->d_name);
+	  if(nextEntry->d_name[0] != '.') res = searchFile(nextEntry->d_name, directoryPath, argv[1], i);
+	  if(res != NULL) printf("\n!\n%s\n", res);
+	  nextEntry = readdir(directory);
+	}
+      closedir(directory);
+    }
+}

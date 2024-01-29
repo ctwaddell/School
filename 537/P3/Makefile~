@@ -1,0 +1,28 @@
+CC = gcc
+CFLAGS = -Wall -Werror -pedantic -std=gnu18
+LOGIN = waddell
+SUBMITPATH = ~cs537-1/handin/waddell/P3/
+
+all: run
+
+run: wsh
+	./wsh
+
+wsh: wsh.o
+	$(CC) $< -o $@ 
+wsh.o: wsh.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+pack: wsh.c wsh.h Makefile README.md
+	tar -czvf login.tar.gz wsh.c wsh.h Makefile README.md
+
+submit: login.tar.gz
+	cp $< $(SUBMITPATH)
+
+clean:
+	rm -f wsh
+	rm -f wsh.c~
+	rm -f wsh.o
+	rm -f login.tar.gz
+
+.PHONY: all run

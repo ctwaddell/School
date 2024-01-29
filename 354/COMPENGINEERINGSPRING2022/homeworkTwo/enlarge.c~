@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+struct point
+{
+  int x;
+  int y;
+};
+
+struct rect
+{
+  struct point pt1;
+  struct point pt2;
+};
+  
+void Enlarge_Rectangle(struct rect* r, struct point p)
+{
+  if(p.x >= r->pt1.x && p.y >= r->pt1.y)
+    {
+      printf("positive side\n");
+    }
+  else if(p.x < r->pt1.x && p.y < r->pt1.y)
+    {
+      printf("negative side\n");
+    }
+  else
+    {
+      printf("POINT OUT OF BOUNDS");
+    }
+  r->pt1.x = 100; 
+}
+
+void main()
+{
+  struct point p1 = {-1, -1};
+  struct point p2 = {1, 1};
+  struct rect r = {p1, p2};
+  struct rect* rPointer = &r;
+  printf("Bottom left = (%d, %d)\n", r.pt1.x, r.pt1.y);
+  printf("Top right = (%d, %d)\n", r.pt2.x, r.pt2.y);
+  struct point enlarge = {100, 100};
+  Enlarge_Rectangle(rPointer, enlarge);
+  printf("Bottom left = (%d, %d)\n", r.pt1.x, r.pt1.y);
+  printf("Top right = (%d, %d)\n", r.pt2.x, r.pt2.y);
+}

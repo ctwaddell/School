@@ -1,0 +1,20 @@
+Testing for 5 operations in total
+TEST PASSED
+Testing for 1 operations in total
+Failed at operation index: 0
+ - Incorrect dataCand : -1 vs Sol : 0
+TEST FAILED
+Testing for 2 operations in total
+TEST PASSED
+Testing for 5 operations in total
+Failed at operation index: 0
+ - Incorrect dataCand : -1 vs Sol : 0
+Failed at operation index: 1
+ - Incorrect dataCand : -1 vs Sol : 0
+Failed at operation index: 2
+ - Incorrect dataCand : -1 vs Sol : 0
+Failed at operation index: 3
+ - Incorrect dataCand : -1 vs Sol : 0
+Failed at operation index: 4
+ - Incorrect dataCand : -1 vs Sol : 0
+TEST FAILED

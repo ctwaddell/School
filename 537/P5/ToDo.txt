@@ -1,0 +1,17 @@
+Where 'O' is a pass and 'X' is a fail, '!0' is a test that could fail once we expand out implementation.
+
+test_1  - O - checks correct memory pointer is returned
+test_2  - O - checks memunmap works (kinda loosely)
+test_3  - O - tries editing some memory, similar to test_2
+test_4  - O - checks a void* of 0 will be assigned a default position in the memmap
+test_5  - O - checks address is valid/in range
+test_6  - O - tests opening a file yields the correct data to the memory pointer
+test_7  - O - requires filewrite() to be called (given correct flags) when munmap is called
+test_8  - !O - checks if data is written and the page is expanded. Tests GROWS_UP as the data accesses should exceed the pagesize.
+test_9  - X - tests if we are updating the file when it is written to, not just the memory
+test_10 - X - accesses memory out of bounds and should segfault. kinda inversely related to test_8. address of 0 is provided.
+test_11 - X - creates two maps close together and when the first GROWS_UP it should segfault
+test_12 - O?? it crashes after running - checks that the child process accesses the same memory as the parent
+test_13 - O - checks MAP_PRIVATE doesn't update the file after it is done
+test_14 - O - checks if child has the same data when MAP_PRIVATE is forked without copy-on-write 
+test_15 - O - checks if the child's data editing affects the parent's data. It shouldn't.
